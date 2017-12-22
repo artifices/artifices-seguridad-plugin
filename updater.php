@@ -1,6 +1,6 @@
 <?php
 
-class Smashing_Updater {
+class Artifices_Updater {
 
 	private $file;
 

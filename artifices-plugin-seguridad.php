@@ -14,7 +14,7 @@ if( ! class_exists( 'Artifices_Updater' ) ){
     include_once( plugin_dir_path( __FILE__ ) . 'updater.php' );
 }
 
-$updater = new Smashing_Updater( __FILE__ );
+$updater = new Artifices_Updater( __FILE__ );
 $updater->set_username( 'artifices' );
 $updater->set_repository( 'artifices-seguridad-plugin' );
 /*

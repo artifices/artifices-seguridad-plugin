@@ -23,25 +23,16 @@ $updater->set_repository( 'artifices-seguridad-plugin' );
 $updater->initialize();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // LIMITAR NUMERO DE REVISIONES EN LA BD
 
 if (!defined('WP_POST_REVISIONS')) define('WP_POST_REVISIONS', 2);
 if (!defined('WP_POST_REVISIONS')) define('WP_POST_REVISIONS', false);
 
-// IMPEDIR EDICION TEMAS & PLUGINS
+// Qué los usuarios admins puedan realizar actualizaciones e instalar plugins
+if ( current_user_can( 'manage_options' ) ) {
+
+} else {
+    // IMPEDIR EDICION TEMAS & PLUGINS
 
 define('DISALLOW_FILE_EDIT',true);
 
@@ -51,7 +42,10 @@ define('DISALLOW_FILE_MODS',true);
 
 // Limitar subidas
 
-// @ini_set( 'upload_max_size' , '5M' );
+ @ini_set( 'upload_max_size' , '5M' );
+}
+
+
 
 // PERSONALIZAR LOGO LOGIN
 

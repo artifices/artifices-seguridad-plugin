@@ -1,7 +1,4 @@
 <?php
-/**
- * @package Opciones de seguridad
- */
 /*
 Plugin Name: Opciones de Seguridad para clientes Artifices
 Plugin URI: https://www.artifices.net
@@ -13,42 +10,30 @@ License: GPLv2 or later
 Text Domain: artifices
 */
 
-/*
-* Función para añadir una página al menú de administrador de wordpress
-*/
-function artifices_seguridad_plugin_menu(){
-    //Añade una página de menú a wordpress
-    add_menu_page('Ajustes plugin seguridad Artifices',          //Título de la página
-                    'Opciones de seguridad artifices',                       //Título del menú
-                    'administrator',                            //Rol que puede acceder
-                    'artifices_seguridad-content-settings',       //Id de la página de opciones
-                    'artifices_seguridad_content_page_settings',  //Función que pinta la página de configuración del plugin
-                    'dashicons-admin-generic');                 //Icono del menú
+if( ! class_exists( 'Artifices_Updater' ) ){
+    include_once( plugin_dir_path( __FILE__ ) . 'updater.php' );
 }
-add_action('admin_menu','artifices_seguridad_plugin_menu');
 
+$updater = new Smashing_Updater( __FILE__ );
+$updater->set_username( 'artifices' );
+$updater->set_repository( 'artifices-seguridad-plugin' );
 /*
-* Función que pinta la página de configuración del plugin
+    $updater->authorize( 'abcdefghijk1234567890' ); // Your auth code goes here for private repos
 */
-function artifices_seguridad_content_page_settings(){
-?>
-    <div class="wrap">
-        <h2>Configuración plugin Opciones de Seguridad Artifices</h2>
-        <form method="POST" action="options.php">
-            <?php 
-                settings_fields('artifices_seguridad-content-settings-group');
-                do_settings_sections( 'artifices_seguridad-content-settings-group' ); 
-            ?>
-            <label>Variable:&nbsp;</label>
-            <input  type="text" 
-                    name="artifices_seguridad_value" 
-                    id="artifices_seguridad_value" 
-                    value="<?php echo get_option('cartifices_seguridad_value'); ?>" />
-            <?php submit_button(); ?>
-        </form>
-    </div>
-<?php
-}
+$updater->initialize();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // LIMITAR NUMERO DE REVISIONES EN LA BD

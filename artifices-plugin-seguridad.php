@@ -3,7 +3,7 @@
 Plugin Name: Opciones de Seguridad para clientes Artifices
 Plugin URI: https://www.artifices.net
 Description: Opciones básicas de seguridad: límite de revisiones, no actualizaciones automaticas, no edición de ficheros, no instalación de plugins. 
-* Version: 1.0.0
+* Version: 1.0.2
 * Author: Jesus Cortes
 * Author URI: http://www.artifices.net
 License: GPLv2 or later
@@ -28,11 +28,7 @@ $updater->initialize();
 if (!defined('WP_POST_REVISIONS')) define('WP_POST_REVISIONS', 2);
 if (!defined('WP_POST_REVISIONS')) define('WP_POST_REVISIONS', false);
 
-// Qué los usuarios admins puedan realizar actualizaciones e instalar plugins
-if ( current_user_can( 'manage_options' ) ) {
-
-} else {
-    // IMPEDIR EDICION TEMAS & PLUGINS
+// IMPEDIR EDICION TEMAS & PLUGINS
 
 define('DISALLOW_FILE_EDIT',true);
 
@@ -43,9 +39,6 @@ define('DISALLOW_FILE_MODS',true);
 // Limitar subidas
 
  @ini_set( 'upload_max_size' , '5M' );
-}
-
-
 
 // PERSONALIZAR LOGO LOGIN
 
@@ -62,5 +55,21 @@ function my_login_logo() { ?>
     </style>
 <?php }
 add_action( 'login_enqueue_scripts', 'my_login_logo' );
+
+$user = wp_get_current_user();
+$allowed_roles = array('administrator');
+<?php if( array_intersect($allowed_roles, $user->roles ) ) {  ?> 
+   // IMPEDIR EDICION TEMAS & PLUGINS
+
+define('DISALLOW_FILE_EDIT',false);
+
+// IMPEDIR INSTALACION DE PLUGINS
+
+define('DISALLOW_FILE_MODS',false);
+
+// Limitar subidas
+
+ @ini_set( 'upload_max_size' , '50M' );
+<?php } ?>
 
 ?>

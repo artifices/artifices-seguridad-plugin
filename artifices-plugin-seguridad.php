@@ -58,7 +58,7 @@ add_action( 'login_enqueue_scripts', 'my_login_logo' );
 
 $user = wp_get_current_user();
 $allowed_roles = array('administrator');
-<?php if( array_intersect($allowed_roles, $user->roles ) ) {  ?> 
+if( array_intersect($allowed_roles, $user->roles ) ) { 
    // IMPEDIR EDICION TEMAS & PLUGINS
 
 define('DISALLOW_FILE_EDIT',false);
@@ -70,6 +70,6 @@ define('DISALLOW_FILE_MODS',false);
 // Limitar subidas
 
  @ini_set( 'upload_max_size' , '50M' );
-<?php } ?>
+ } 
 
 ?>

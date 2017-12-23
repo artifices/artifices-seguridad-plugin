@@ -56,20 +56,11 @@ function my_login_logo() { ?>
 <?php }
 add_action( 'login_enqueue_scripts', 'my_login_logo' );
 
-$user = wp_get_current_user();
-$allowed_roles = array('administrator');
-if( array_intersect($allowed_roles, $user->roles ) ) { 
-   // IMPEDIR EDICION TEMAS & PLUGINS
-
-define('DISALLOW_FILE_EDIT',false);
-
-// IMPEDIR INSTALACION DE PLUGINS
-
-define('DISALLOW_FILE_MODS',false);
-
-// Limitar subidas
-
- @ini_set( 'upload_max_size' , '50M' );
- } 
+$field = login;
+$value = 'artifices';
+$userdata = WP_User::get_data_by( $field, $value );
+ 
+    if ( $userdata )
+        define('DISALLOW_FILE_EDIT',false);
 
 ?>

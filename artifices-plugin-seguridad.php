@@ -45,7 +45,7 @@ define('DISALLOW_FILE_MODS',true);
 function my_login_logo() { ?>
     <style type="text/css">
         #login h1 a, .login h1 a {
-            background-image: url(https://www.artifices.net/wp-content/uploads/2017/03/logo_web_01.png);
+            background-image: url('<?php echo plugins_url( 'logo-artifices.png', __FILE__ ) ; ?>');
 		height:52px;
 		width:240px;
 		background-size: 240px 52px;
@@ -55,12 +55,8 @@ function my_login_logo() { ?>
     </style>
 <?php }
 add_action( 'login_enqueue_scripts', 'my_login_logo' );
-// From https://codex.wordpress.org/Function_Reference/get_currentuserinfo
-	global $current_user;
-	get_currentuserinfo();	
-	
-	if ('artifices' === $current_user->user_login) {
-		// ACTIVAR EDICION TEMAS & PLUGINS
-		define('DISALLOW_FILE_EDIT',false);
-	}
+add_filter( 'login_headerurl', 'custom_loginlogo_url' );
+function custom_loginlogo_url($url) {
+    return 'https://artifices.net';
+}
 ?>

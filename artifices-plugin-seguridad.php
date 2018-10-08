@@ -3,11 +3,12 @@
 Plugin Name: Opciones de Seguridad para clientes Artifices
 Plugin URI: https://www.artifices.net
 Description: Opciones básicas de seguridad: límite de revisiones, no actualizaciones automaticas, no edición de ficheros, no instalación de plugins. 
-* Version: 1.0.5
+* Version: 1.0.6
 * Author: Jesus Cortes
 * Author URI: http://www.artifices.net
 License: GPLv2 or later
 Text Domain: artifices
+GitHub Plugin URI: https://github.com/artifices/Divi-child-theme-para-clientes-de-Artifices
 */
 
 if( ! class_exists( 'Artifices_Updater' ) ){

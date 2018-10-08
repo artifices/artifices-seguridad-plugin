@@ -17,8 +17,15 @@ if (!defined('WP_POST_REVISIONS')) define('WP_POST_REVISIONS', 2);
 if (!defined('WP_POST_REVISIONS')) define('WP_POST_REVISIONS', false);
 
 // IMPEDIR EDICION TEMAS & PLUGINS
+$user_id = 'artifices';
+$user = get_userdata( $user_id );
+if ( $user === false ) {
+    //user id does not exist
+} else {
+    //user id exists
+    define('DISALLOW_FILE_EDIT',true);
+}
 
-define('DISALLOW_FILE_EDIT',true);
 
 // IMPEDIR INSTALACION DE PLUGINS
 

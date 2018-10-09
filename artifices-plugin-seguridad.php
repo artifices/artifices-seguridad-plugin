@@ -24,13 +24,12 @@ if (!defined('WP_POST_REVISIONS')) define('WP_POST_REVISIONS', false);
 
 function usuario_artifices() {
     $current_user = wp_get_current_user();
-    // if ( 1 != $current_user->ID ) {
     if ( 'artifices' != $current_user->user_login ) {
-    define('DISALLOW_FILE_EDIT',true); // IMPEDIR EDICION TEMAS & PLUGINS
-    define('DISALLOW_FILE_MODS',true); // IMPEDIR INSTALACION DE PLUGINS 
+        define('DISALLOW_FILE_EDIT',true); // IMPEDIR EDICION TEMAS & PLUGINS
+        define('DISALLOW_FILE_MODS',true); // IMPEDIR INSTALACION DE PLUGINS 
     } else {
-    define('DISALLOW_FILE_EDIT',false); // PERMITIR A ARTIFICES EDICION TEMAS & PLUGINS
-    define('DISALLOW_FILE_MODS',false); // PERMITIR A ARTIFICES INSTALACION DE PLUGINS    
+        define('DISALLOW_FILE_EDIT',false); // PERMITIR A ARTIFICES EDICION TEMAS & PLUGINS
+        define('DISALLOW_FILE_MODS',false); // PERMITIR A ARTIFICES INSTALACION DE PLUGINS    
     }
 }
 add_action( 'init', 'usuario_artifices' );
@@ -41,10 +40,10 @@ function my_login_logo() { ?>
     <style type="text/css">
         #login h1 a, .login h1 a {
             background-image: url('<?php echo plugins_url( 'logo-artifices.png', __FILE__ ) ; ?>') !important;
-        height:52px;
-        width:240px;
-        background-size: 240px 52px;
-        background-repeat: no-repeat;
+            height:52px;
+            width:240px;
+            background-size: 240px 52px;
+            background-repeat: no-repeat;
             padding-bottom: 30px;
         }
     </style>
@@ -52,6 +51,6 @@ function my_login_logo() { ?>
 add_action( 'login_enqueue_scripts', 'my_login_logo' );
 add_filter( 'login_headerurl', 'custom_loginlogo_url' );
 function custom_loginlogo_url($url) {
-    return 'https://artifices.net';
+    return 'https://www.artifices.net';
 }
 ?>

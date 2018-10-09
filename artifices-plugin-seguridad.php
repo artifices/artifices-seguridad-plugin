@@ -8,7 +8,7 @@ Description: Opciones basicas de seguridad: limite de revisiones, no actualizaci
 * Author URI: http://www.artifices.net
 License: GPLv2 or later
 Text Domain: artifices
-GitHub Plugin URI: https://github.com/artifices/Divi-child-theme-para-clientes-de-Artifices
+GitHub Plugin URI: https://github.com/artifices/artifices-seguridad-plugin
 */
 
 // LIMITAR NUMERO DE REVISIONES EN LA BD

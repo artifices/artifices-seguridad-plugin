@@ -47,7 +47,7 @@
 			"file": "artifices-plugin-seguridad.php",
 			"settings":
 			{
-				"buffer_size": 1827,
+				"buffer_size": 1441,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -195,7 +195,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1827,
+						"buffer_size": 1441,
 						"regions":
 						{
 						},

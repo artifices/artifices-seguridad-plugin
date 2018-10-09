@@ -2,8 +2,8 @@
 /*
 Plugin Name: Opciones de Seguridad para clientes Artifices
 Plugin URI: https://www.artifices.net
-Description: Opciones básicas de seguridad: límite de revisiones, no actualizaciones automaticas, no edición de ficheros, no instalación de plugins. 
-* Version: 1.0.7
+Description: Opciones basicas de seguridad: limite de revisiones, no actualizaciones automaticas, no edicion de ficheros, no instalacion de plugins. 
+* Version: 1.0.8
 * Author: Jesus Cortes
 * Author URI: http://www.artifices.net
 License: GPLv2 or later
@@ -16,24 +16,24 @@ GitHub Plugin URI: https://github.com/artifices/Divi-child-theme-para-clientes-d
 if (!defined('WP_POST_REVISIONS')) define('WP_POST_REVISIONS', 2);
 if (!defined('WP_POST_REVISIONS')) define('WP_POST_REVISIONS', false);
 
-// IMPEDIR EDICION TEMAS & PLUGINS
-$user_id = 'artifices';
-$user = get_userdata( $user_id );
-if ( $user === false ) {
-    //user id does not exist
-} else {
-    //user id exists
-    define('DISALLOW_FILE_EDIT',true);
-}
-
-
-// IMPEDIR INSTALACION DE PLUGINS
-
-define('DISALLOW_FILE_MODS',true);
-
 // Limitar subidas
 
  @ini_set( 'upload_max_size' , '5M' );
+
+// Filtro para permitir solo al usuario artifices realizar tareas de mantenimiento.
+
+function usuario_artifices() {
+    $current_user = wp_get_current_user();
+    // if ( 1 != $current_user->ID ) {
+    if ( 'artifices' != $current_user->user_login ) {
+    define('DISALLOW_FILE_EDIT',true); // IMPEDIR EDICION TEMAS & PLUGINS
+    define('DISALLOW_FILE_MODS',true); // IMPEDIR INSTALACION DE PLUGINS 
+    } else {
+    define('DISALLOW_FILE_EDIT',false); // PERMITIR A ARTIFICES EDICION TEMAS & PLUGINS
+    define('DISALLOW_FILE_MODS',false); // PERMITIR A ARTIFICES INSTALACION DE PLUGINS    
+    }
+}
+add_action( 'init', 'usuario_artifices' );
 
 // PERSONALIZAR LOGO LOGIN
 
@@ -41,11 +41,11 @@ function my_login_logo() { ?>
     <style type="text/css">
         #login h1 a, .login h1 a {
             background-image: url('<?php echo plugins_url( 'logo-artifices.png', __FILE__ ) ; ?>') !important;
-		height:52px;
-		width:240px;
-		background-size: 240px 52px;
-		background-repeat: no-repeat;
-        	padding-bottom: 30px;
+        height:52px;
+        width:240px;
+        background-size: 240px 52px;
+        background-repeat: no-repeat;
+            padding-bottom: 30px;
         }
     </style>
 <?php }

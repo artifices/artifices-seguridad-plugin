@@ -1,3 +1,5 @@
+// CREDITS https://github.com/rayman813/smashing-updater-plugin
+
 <?php
 
 class Artifices_Updater {

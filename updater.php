@@ -1,7 +1,5 @@
-// CREDITS https://github.com/rayman813/smashing-updater-plugin
-
 <?php
-
+// CREDITS https://github.com/rayman813/smashing-updater-plugin
 class Artifices_Updater {
 
 	private $file;
